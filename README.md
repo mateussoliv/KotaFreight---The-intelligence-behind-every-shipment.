@@ -1,165 +1,181 @@
 # KotaFreight (KotaComex)
-### Plataforma SaaS B2B de Gestao de Fretes Internacionais, Inteligencia Aduaneira e Rastreamento Operacional
+### Enterprise B2B SaaS Platform for International Freight Management, Customs Intelligence, and Multimodal Operations
 
 ---
 
-## 1. Sumario Executivo
+## Access & Links
 
-O **KotaFreight** (KotaComex) e uma plataforma SaaS B2B corporativa desenvolvida para digitalizar, padronizar e automatizar integralmente o ciclo de operacoes de **Comercio Exterior (COMEX)** e **Logistica Internacional Multimodal**.
-
-O sistema atua como um ecossistema integrado que conecta tres atores operacionais centrais:
-- **Importadores e Donos de Carga (BCOs):** Gestao de Purchase Orders (PO), emissao de RFQs multimodais, simulacao de custos de importacao e acompanhamento ponta a ponta.
-- **Agentes de Carga (Freight Forwarders):** Equalizacao de fretes internacionais, disparo automatizado de cotacoes para parceiros internacionais, gestao de taxas locais e geracao de Follow-Up (FUP) com identidade visual personalizada (White-Label).
-- **Despachantes Aduaneiros:** Acesso centralizado e seguro ao dossie documental com validacao de licencas e orgaos anuentes (LPCO).
-- **Controladoria e Administracao:** Painel financeiro, gestao de contratos corporativos, faturamento de assinaturas e auditoria de permissoes.
+- **Live Platform:** [kotafreight.com](https://kotafreight.com/)
+- **Company LinkedIn:** [linkedin.com/company/kotafreight](https://www.linkedin.com/company/kotafreight/)
 
 ---
 
-## 2. Stack Tecnologica e Decisoes de Engenharia
+<p align="center">
+  <img src="assets/kotafreight-landing.png" alt="KotaFreight Platform Overview" width="100%" />
+</p>
 
-A arquitetura foi desenhada priorizando integridade relacional, seguranca em ambiente multi-tenant, renderizacao eficiente no lado do servidor e tipagem estrita de ponta a ponta.
+<p align="center">
+  <img src="assets/kotafreight-dashboard.png" alt="KotaFreight Operations and Analytics Dashboard" width="100%" />
+</p>
 
-| Camada | Tecnologia | Justificativa Arquitetural |
+---
+
+## 1. Executive Summary
+
+**KotaFreight** (KotaComex) is a production-grade, multi-tenant B2B SaaS platform engineered to digitize, standardize, and automate the end-to-end lifecycle of **Foreign Trade (COMEX)** and **International Multimodal Logistics**.
+
+The platform operates as a centralized operational hub interconnecting four critical ecosystem actors:
+- **Importers and Cargo Owners (BCOs):** Purchase Order (PO) tracking, multimodal Request for Quotation (RFQ) generation, landed-cost fiscal simulations, and comprehensive shipment governance.
+- **Freight Forwarders and Logistics Providers:** Algorithmic RFQ equalization, automated rate quotation dispatch to overseas agent networks, local destination charge management, and custom-branded (White-Label) Follow-Up (FUP) distribution.
+- **Customs Brokers (Despachantes Aduaneiros):** Centralized digital dossier access, regulatory compliance validation, and LPCO (Licenses, Permits, Certificates, and Others) administration via tokenized secure access.
+- **Administration and Controllership:** Subscription billing cycles, multi-tier tenant management, commercial contract governance, and audit logging.
+
+---
+
+## 2. Technology Stack and Engineering Decisions
+
+The platform was architected with a strict focus on relational data integrity, multi-tenant security isolation, server-side performance optimization, and end-to-end type safety.
+
+| Layer | Technology | Architectural Rationale |
 | :--- | :--- | :--- |
-| **Framework Full-Stack** | Next.js (App Router) | Server Components para otimizacao de performance, Server Actions para mutacoes seguras e rotas de API dedicadas para webhooks e integracoes. |
-| **Linguagem** | TypeScript | Tipagem estrita end-to-end garantindo consistencia entre o banco de dados, regras de negocio e componentes visuais. |
-| **Interface & Componentes** | React, Vanilla CSS, CSS Modules | Controle milimetrico de layout sem dependencia pesada de bibliotecas de terceiros, com microinteracoes reativas e alto contraste corporativo. |
-| **Camada de Dados & ORM** | PostgreSQL, Prisma ORM | Modelagem relacional com mais de 25 entidades normalizadas, transacoes atomicas ACID e geracao de cliente tipado sob medida. |
-| **Armazenamento de Arquivos** | Supabase Storage | Armazenamento de alta disponibilidade para documentacao aduaneira sensivel (Invoices, Packing Lists, BLs, AWBs e contratos) com URLs assinadas e expiraveis. |
-| **Motor de Geracao de Documentos** | Node.js Buffer Engines | Geracao programatica de relatorios PDF de alta densidade de dados para Dossies Aduaneiros, Estudos de Viabilidade Tributaria e Pedidos de Compra. |
-| **Comunicacoes Transacionais** | Resend API | Disparos transacionais confiaveis com templates HTML responsivos, suporte bilingue nativo (PT/EN) e multiplas copias funcionais (CC de equipe). |
-| **Seguranca & Autenticacao** | Bcrypt, 2FA, Sessao Criptografada | Isolamento logico de inquilinos (multi-tenancy), hash seguro de credenciais, segundo fator de autenticacao e tokens temporarios com expiracao para terceiros. |
+| **Full-Stack Framework** | Next.js (App Router) | Server Components for minimal client-side overhead, Server Actions for secure transactional mutations, and Route Handlers for external webhooks and integrations. |
+| **Language** | TypeScript | Strict end-to-end typing ensuring absolute consistency between database entities, complex business rules, and UI components. |
+| **UI & Styling** | React, Vanilla CSS, CSS Modules | Pixel-perfect layout control without heavy external UI component runtime overhead, featuring accessible high-contrast corporate typography and reactive micro-interactions. |
+| **Data Layer & ORM** | PostgreSQL, Prisma ORM | Relational schema with over 25 normalized entities, ACID transactional guarantees, explicit foreign key cascade controls, and customized typed client generation. |
+| **Object Storage** | Supabase Storage | Highly available and secure object storage for sensitive customs documents (Commercial Invoices, Packing Lists, BLs, AWBs, and contracts) using time-limited signed URLs. |
+| **Document Generation** | Node.js Buffer Engines | Programmatic rendering of high-density operational PDFs for Customs Dossiers, Fiscal Viability Studies, and Purchase Order records. |
+| **Transactional Email** | Resend API | Reliable multi-party dispatch engine supporting responsive HTML templates, bilingual messaging (English and Portuguese), and automated team CC distribution. |
+| **Security & Authentication** | Bcrypt, 2FA, Encrypted Sessions | Logical tenant isolation, cryptographic credential hashing, Two-Factor Authentication (2FA), and secure expirable token links for external non-authenticated stakeholders. |
 
 ---
 
-## 3. Arquitetura de Inteligencia Artificial (Destaque Principal)
+## 3. Artificial Intelligence Architecture (Core Focus)
 
-O desenvolvimento do KotaFreight incorpora a Inteligencia Artificial em dois niveis estrategicos: **no processo de engenharia de software acelerada (Engenharia Agentica)** e **na inteligencia analitica e preditiva do produto final**.
+The conception, engineering, and feature set of KotaFreight deeply integrate Artificial Intelligence across two complementary dimensions: **Agentic Software Engineering (Development Acceleration)** and **Applied Product Intelligence (Domain-Specific Automation & LLM Architecture)**.
 
-### 3.1. Engenharia de Software Acelerada por IA (Agentic Software Engineering)
+### 3.1. Agentic Software Engineering and AI-Driven Architecture
 
-A construcao desta plataforma de alta complexidade em curto espaco de tempo foi viabilizada pelo dominio avancado de metodologias de desenvolvimento orientadas por IA:
+Delivering an enterprise-grade platform of this complexity was enabled by advanced AI-assisted engineering methodologies and autonomous agentic workflows:
 
-- **Decomposicao Arquitetural e Domain-Driven Design (DDD):** Traducao de regras complexas de Comercio Exterior brasileiro (aliquotas em cascata, bases de calculo "por dentro", rotinas de desembaraco e prazos de Demurrage) em especificacoes modulares executaveis por agentes de codigo.
-- **Engenharia de Prompt Estruturada:** Uso de prompts contextuais e tecnicos com especificacoes precisas de esquemas de banco, contratos de interface TypeScript e fluxos assincronos, minimizando alucinacoes e garantindo aderencia total as melhores praticas de mercado.
-- **Orquestracao de Contexto e Refatoracao Concorrente:** Gestao consciente da janela de contexto para orquestrar criacao de tabelas relacionais, integracoes de endpoints REST e validacoes de negocio sem introduzir dividas tecnicas ou quebras de compatibilidade.
-- **Garantia de Qualidade Deterministica:** Geracao automatizada de rotinas de higienizacao de dados, scripts de saneamento e validacoes rigorosas de input para prevencao de falhas em tempo de execucao.
+- **Architectural Decomposition & Domain-Driven Design (DDD):** Deconstructed intricate Brazilian customs legislation (cascading import duties, "grossed-up" state tax bases, and maritime demurrage rules) into modular, deterministic software abstractions guided by high-precision AI prompts.
+- **Context Window Orchestration & Type Contracts:** Maintained strict architectural integrity across multi-file refactoring sessions by orchestrating code generation against strict TypeScript interfaces and schema-first Prisma specifications, preventing technical debt and API drift.
+- **Automated Defensive Engineering:** Leveraged LLM pair-programming agents to systematically generate data sanitization routines, defensive boundary validations, migration integrity tests, and error boundaries across all server actions.
 
-### 3.2. Inteligencia Algoritmica e Heuristica no Produto
+### 3.2. Applied Algorithmic and Heuristic Domain Intelligence
 
-- **Motor de Classificacao Fiscal NCM & Sistema Harmonizado:**
-  - Integracao em tempo real com APIs oficiais do Siscomex com mecanismo de cache em memoria e camada de contingencia resiliente.
-  - Algoritmo de busca hibrida (correspondencia numerica exata de 8 digitos, normalizacao de caracteres e busca semantica por palavras-chave na descricao da mercadoria).
-  - Resolucao automatica da arvore hierarquica do Sistema Harmonizado: mapeamento instantaneo de 21 Secoes (I a XXI) e 97 Capitulos aduaneiros oficiais.
-  - Identificacao preliminar de exigencias regulatorias e atributos mandatorios exigidos pelo Catalogo de Produtos da Nova Duimp (Declaracao Unica de Importacao).
+- **Harmonized System (HS / NCM) Intelligent Classification Engine:**
+  - Real-time integration with Brazilian Siscomex regulatory APIs, augmented by an in-memory caching tier and fallback resilience.
+  - Hybrid matching engine combining 8-digit exact numerical parsing, query normalization, and semantic keyword matching across official customs descriptions.
+  - Automatic hierarchical traversal across the Harmonized System structure, resolving 21 Sections (I to XXI) and 97 official Chapters instantaneously.
+  - Early-stage detection of regulatory agency interventions (ANVISA, MAPA, INMETRO) and mandatory product attribute requirements under the New Duimp (Single Import Declaration) catalog.
 
-- **Motor de Calculo Tributario em Cascata:**
-  - Algoritmo de apuracao tributaria simultanea respeitando a ordem juridica de incidencia:
-    1. Base CIF (Valor FOB + Frete Internacional + Seguro Internacional).
-    2. Imposto de Importacao (II).
-    3. Imposto sobre Produtos Industrializados (IPI) com base ad valorem sobre CIF + II.
-    4. PIS e COFINS-Importacao com regras especificas de desoneracao e alinhamento federal.
-    5. ICMS Estadual com calculo de base dupla ("calculo por dentro"), parametrizado pelas regras fiscais de cada Unidade Federativa de desembaraco (SP, SC, ES, PR, etc.).
-    6. Adicional ao Frete para Renovacao da Marinha Mercante (AFRMM) incidente nas operacoes maritimas.
-  - Projecao instantanea do Custo Total em Moeda Nacional (BRL) e do Custo Unitario Nacionalizado por item.
+- **Cascading Multi-Variable Landed Cost Engine:**
+  - Proprietary algorithm executing simultaneous tax calculations adhering to strict Brazilian constitutional hierarchy and tax computation rules:
+    1. CIF Base determination (FOB Cargo Value + International Freight + Marine/Air Cargo Insurance).
+    2. Import Duty (II - Imposto de Importacao).
+    3. Excise Tax (IPI - Imposto sobre Produtos Industrializados) calculated ad valorem over (CIF + II).
+    4. Federal Social Contributions (PIS-Importacao and COFINS-Importacao) with statutory deduction bases.
+    5. State Value-Added Tax (ICMS) calculated with state-specific gross-up formulas ("calculo por dentro") configured dynamically by port/state of customs clearance.
+    6. Merchant Marine Renewable Surcharge (AFRMM) applied specifically to ocean freight operations.
+  - Real-time conversion to national currency (BRL) with automated spread calculation and unit landed-cost projection per item.
 
-- **Motor Preditivo Anti-Demurrage (Free Time Monitoring):**
-  - Calculo continuo e preditivo da queima de dias livres (*Free Time*) a partir da data efetiva de atracacao e descarga do conteiner.
-  - Sistema de alertas automatizados por severidade para mitigar custos diarios desproporcionais com sobre-estadia de conteineres no porto.
+- **Predictive Anti-Demurrage and Detention Monitor:**
+  - Continuous algorithmic monitoring of container Free Time burn rates relative to verified port discharge dates.
+  - Automated severity-based risk scoring and alerting to prevent catastrophic demurrage penalties in port terminal operations.
 
-### 3.3. Arquitetura para Integracao com Modelos de Linguagem e Visao (LLMs & VLMs)
+### 3.3. Foundation Model and Multimodal LLM Architecture
 
-A base do KotaFreight foi projetada com interfaces preparadas para expansao com Modelos de Fundacao de ultima geracao:
+The core infrastructure of KotaFreight incorporates integration pipelines prepared for Multimodal Vision-Language Models (VLMs) and Retrieval-Augmented Generation (RAG):
 
 ```
-[Documento COMEX (PDF/Imagem)]
-          │
-          ▼
-[Pipeline de OCR & Vision LLM]
-          │
-          ▼
-[Extracao de Entidades Estruturadas via JSON Schema / Zod]
-    (Invoice Number, Incoterm, Moeda, Itens, Peso, NCMs)
-          │
-          ▼
-[RAG Regulatorio Aduaneiro] ◄── [Base Vetorial: INs RFB, Decretos, Duimp]
-          │
-          ▼
-[Validacao de Conformidade & Insercao Direta no Banco PostgreSQL]
+[Customs Document (PDF / Image)]
+               │
+               ▼
+   [OCR & Vision LLM Pipeline]
+               │
+               ▼
+[Structured Entity Extraction via Zod / JSON Schema]
+ (Invoice Number, Incoterm, Currency, Items, NCM, Gross Weight)
+               │
+               ▼
+  [Regulatory Compliance RAG] ◄── [Vector Database: Customs Norms & Duimp]
+               │
+               ▼
+[Automated Validation & Ingestion into PostgreSQL Database]
 ```
 
-- **Extracao Multimodal de Documentos Aduaneiros:** Pipeline arquitetural para ingestao de Faturas Comerciais (*Commercial Invoices*), Listas de Carga (*Packing Lists*) e Conhecimentos de Embarque (*Bill of Lading / AWB*), convertendo documentos nao-estruturados em modelos relacionais tipados via Function Calling / Structured Outputs.
-- **RAG para Compliance Regulatorio (Duimp):** Arquitetura para recuperacao contextual baseada em embeddings vetorizados sobre Instrucoes Normativas da Receita Federal do Brasil e Portarias Secex, permitindo auditoria preventiva de classificacoes fiscais antes da transmissao oficial.
+- **Multimodal Customs Document Ingestion:** Architectural pipeline designed for processing unstandardized Commercial Invoices, Packing Lists, and Bills of Lading (BL/AWB), parsing visual data directly into structured, type-safe database records via structured LLM function calling.
+- **Retrieval-Augmented Generation (RAG) for Customs Compliance:** Vector search architecture indexing thousands of official regulatory rulings (Instrucoes Normativas da Receita Federal, Portarias Secex, and Cosit solutions) to provide automated compliance checks and legal justification notes prior to official customs transmission.
 
 ---
 
-## 4. Modulos Funcionais do Sistema
+## 4. Functional Platform Modules
 
 ```mermaid
 graph TD
-    A[Plataforma KotaFreight] --> B[Smart Quote Engine / RFQ]
-    A --> C[Simulador Fiscal e Viabilidade]
-    A --> D[Gestao de Embarques e Workflow]
-    A --> E[Dossie Aduaneiro Digital]
-    A --> F[Tracking Multimodal e FUP]
-    A --> G[Gestao de Purchase Orders - PO]
+    A[KotaFreight Platform] --> B[Smart Quote Engine / RFQ]
+    A --> C[Fiscal Simulator & Viability Engine]
+    A --> D[Shipment Workflow Management]
+    A --> E[Digital Customs Dossier]
+    A --> F[Multimodal Tracking & FUP]
+    A --> G[Purchase Order Management - PO]
     
-    B --> B1[Maritimo FCL/LCL, Aereo e Rodoviario]
-    B --> B2[Equalizacao All-In e Spread Cambial]
-    C --> C1[Calculo Tributario Completo por UF e NCM]
-    C --> C2[Geracao de Dossie Executivo de Viabilidade]
-    D --> D1[Workflow de 17 Etapas Operacionais]
-    D --> D2[Monitor Preditivo Anti-Demurrage]
-    E --> E1[Acesso Externo Seguro via Token Expiravel]
-    E --> E2[Validacao de LPCO e Orgaos Anuentes]
-    F --> F1[Disparo de Follow-Up White-Label]
-    G --> G1[Rastreabilidade PO -> Cotacao -> Embarque]
+    B --> B1[Ocean FCL/LCL, Air, and Road]
+    B --> B2[All-In Equalization & FX Spread]
+    C --> C1[Full Tax Calculation by NCM & State]
+    C --> C2[Executive PDF Feasibility Reports]
+    D --> D1[17-Stage Operational Timeline]
+    D --> D2[Predictive Anti-Demurrage Monitor]
+    E --> E1[Secure Tokenized External Access]
+    E --> E2[LPCO & Regulatory Agency Control]
+    F --> F1[White-Label Follow-Up Engine]
+    G --> G1[Full PO -> Quote -> Shipment Traceability]
 ```
 
-### Modulo 1: Smart Quote Engine (Motor de RFQ Multimodal)
-- Disparo simultaneo e individualizado de cotacoes para redes de parceiros comerciais globais.
-- Suporte a idiomas nativos (Portugues e Ingles), garantindo comunicacao fluida com agentes de carga internacionais.
-- Parametrizacao completa para Maritimo (FCL/LCL), Aereo (empilhamento, dimensoes e relacao peso taxavel) e Rodoviario dedicado.
-- Equalizacao automatizada de propostas recebidas: comparacao de taxas de origem, frete basico, taxas locais no destino (THC, Capatazia), transit time e validade de tarifa.
-- Sanitizacao rigorosa de dados: protecao contra vazamento de identidade de clientes finais para sub-fornecedores.
+### Module 1: Smart Quote Engine (Multimodal RFQ)
+- Concurrent, individualized request dispatch to global overseas forwarder networks.
+- Native bilingual support (Portuguese and English) for seamless cross-border communication.
+- Full multimodal parameterization: Ocean FCL/LCL (equipment types, cubic meters, weight), Air Freight (stackability, volumetric weight ratio), and Dedicated Road Freight.
+- Automated rate equalization: unified comparison of origin charges, ocean/air base freight, destination port charges (THC, handling), transit times, and currency spreads.
+- Rigorous data sanitization preventing client commercial identity leakage to sub-tier carriers.
 
-### Modulo 2: Simulador Tributario e Estudo de Viabilidade Financeira
-- Apuracao instantanea de II, IPI, PIS, COFINS, ICMS por estado e AFRMM.
-- Comparativos de cenarios logisticos (impacto de variacao cambial, diferentes portos de entrada e alternativas de frete).
-- Geracao automatizada de estudos de viabilidade financeira em PDF estruturado para apresentacao a comites de suprimentos e diretorias.
+### Module 2: Fiscal Simulator and Financial Viability Studies
+- Automated calculation of all Brazilian import duties (II, IPI, PIS, COFINS, ICMS, and AFRMM).
+- Strategic scenario modeling evaluating exchange rate fluctuations, port alternatives, and multimodal options.
+- Dynamic generation of executive-grade PDF viability studies for procurement boards and finance directors.
 
-### Modulo 3: Gestao Operacional de Embarques (Workflow de 17 Etapas)
-- Timeline operacional padronizada cobrindo:
-  `Solicitacao -> Cotacao -> Booking -> Coleta -> Estufagem -> Desembaraco Origem -> Embarque -> Em Transito -> Chegada ao Destino -> Presenca de Carga -> Registro DI/Duimp -> Desembaraco Aduaneiro -> Carregamento -> Entrega na Fabrica`.
-- Centralizacao de observacoes operacionais e notificacoes de marcos criticos.
+### Module 3: Operational Shipment Workflow (17-Stage Journey)
+- Standardized end-to-end operational timeline:
+  `Quotation Request -> Booking -> Cargo Pickup -> Stuffing -> Origin Customs Clearance -> On Board -> In Transit -> Port Arrival -> Cargo Presence Registration -> Duimp/DI Filing -> Customs Clearance -> Terminal Loading -> Final Plant Delivery`.
+- Centralized milestone logging, operational notes, and automated deadline tracking.
 
-### Modulo 4: Dossie Aduaneiro Digital do Despachante
-- Repositorio unificado para documentos vitais da operacao: Commercial Invoice, Packing List, Bill of Lading (BL), AWB, Certificados de Origem e Comprovantes de Pagamento.
-- Mapeamento de licencas de importacao e anuencias regulatorias (ANVISA, MAPA, INMETRO, ANATEL).
-- Compartilhamento externo sem necessidade de login via links seguros gerados por tokens criptografados com prazo de expiracao controlado.
+### Module 4: Digital Customs Broker Dossier
+- Unified secure repository for core international shipping documentation: Commercial Invoices, Packing Lists, Bills of Lading (BL), Air Waybills (AWB), Certificates of Origin, and FX exchange contracts.
+- Regulatory requirement monitoring across Brazilian intervention bodies (ANVISA, MAPA, INMETRO, ANATEL).
+- External tokenized access allowing external customs brokers to inspect and download dossier files securely without requiring full platform credentials.
 
-### Modulo 5: Tracking Multimodal e Follow-Up (FUP) White-Label
-- Monitoramento de status de cargas maritimas e aereas com integracoes de webhooks.
-- Gerador de Follow-Up (FUP) com suporte completo a White-Label para agentes de carga: customizacao de logomarca, paleta de cores corporativa, assinatura e canal de comunicacao.
+### Module 5: Multimodal Tracking and White-Label Follow-Up (FUP)
+- Automated milestone monitoring across ocean and air containerized cargo via webhook ingestion.
+- White-label Follow-Up dispatch system allowing freight forwarders to apply their own corporate logo, brand colors, custom signatures, and sender domains.
 
-### Modulo 6: Gestao Integrada de Purchase Orders (PO)
-- Rastreabilidade desde o pedido de compras internacional ate a chegada dos itens no estoque.
-- Catalogo de SKUs com historico de precos FOB, classificacao fiscal, volumes e relacao com fornecedores internacionais.
+### Module 6: Integrated Purchase Order (PO) Management
+- Full supply chain traceability linking initial overseas Purchase Orders directly to subsequent RFQs and finalized shipments.
+- SKU catalog with historical FOB unit pricing, tariff classifications, package dimensions, and foreign manufacturer details.
 
 ---
 
-## 5. Modelagem de Dados e Engenharia de Banco
+## 5. Relational Data Modeling and Database Architecture
 
-O esquema relacional mantido via **Prisma ORM** possui mais de 25 tabelas estruturadas com foco em integridade referencial, desempenho de indices e isolamento multi-tenant:
+The relational schema maintained via **Prisma ORM** comprises over 25 interconnected tables engineered for data integrity, index efficiency, and multi-tenant isolation:
 
 ```
-Esquema Relacional Simplificado:
+Simplified Relational Schema:
 
 [ClientCompany] 1 ──── ∞ [User]
        │
        ├──── ∞ [Quotation] 1 ──── ∞ [Bid] 1 ──── ∞ [BidExpense]
        │            │
-       │            ├──── 1 [Embarque] 1 ──── ∞ [EtapasOperacionais]
+       │            ├──── 1 [Embarque] 1 ──── ∞ [OperationalStages]
        │            └──── ∞ [SmartQuoteRequest] 1 ──── ∞ [SmartQuoteRecipient]
        │
        ├──── ∞ [PurchaseOrder] 1 ──── ∞ [PurchaseOrderItem]
@@ -168,7 +184,7 @@ Esquema Relacional Simplificado:
        │
        ├──── ∞ [TrackingShipment] 1 ──── ∞ [TrackingEvent]
        │
-       └──── 1 [Contract] 1 ──── ∞ [Cobranca] 1 ──── ∞ [HistoricoPagamento]
+       └──── 1 [Contract] 1 ──── ∞ [Cobranca] 1 ──── ∞ [PaymentHistory]
 
 [Provider] 1 ──── ∞ [ProviderGroupEmail]
     │
@@ -177,28 +193,30 @@ Esquema Relacional Simplificado:
     └──── 1 [ProviderEmailBrand (White-Label)]
 ```
 
-### Principais Praticas Aplicadas na Modelagem:
-- **Chaves Estrangeiras com Politicas de Cascata Explicitas:** Eliminacao de dados orfaos e garantia de exclusao logica ou fisica segura.
-- **Restricoes Unicas Compostas:** Prevencao de duplicidade em relacionamentos criticos (ex.: empresa-parceiro, ciclo-consumo, usuario-empresa).
-- **Tratamento de Moedas e Flutuacao Cambial:** Armazenamento granular de moedas de origem (USD, EUR, BRL) e taxas de cambio aplicadas para auditoria financeira retroativa.
+### Core Database Engineering Patterns:
+- **Explicit Foreign Key Cascades:** Eradication of orphaned records and strict enforcement of referential cleanup.
+- **Composite Unique Constraints:** Prevention of duplicate state collisions across multi-tenant relationships (e.g., company-partner scopes, monthly consumption quotas, and user-tenant allocations).
+- **Multi-Currency Precision:** Granular tracking of transactional currencies (USD, EUR, BRL) alongside captured exchange rates to ensure deterministic retrospective financial auditing.
 
 ---
 
-## 6. Seguranca, Conformidade e Governanca
+## 6. Enterprise Security, Governance, and Multi-Tenancy
 
-- **Isolamento Multi-Tenant:** Segregacao estrita de dados por empresa importadora e agente de carga em todas as queries e Server Actions.
-- **Autenticacao e Criptografia:** Hashing de senhas via Bcrypt com salt rounds adequados, sessao segura via cookies HTTP-only e autenticacao de dois fatores (2FA).
-- **Protecao de Dados Sensiveis:** Mascaramento e sanitizacao de dados comerciais estrategicos ao disparar solicitacoes de cotacao para terceiros.
-- **Auditoria Administrativa:** Registro de logs de acoes de administradores para rastreabilidade de alteracoes de planos, cobrancas e liberacoes de modulos.
+- **Multi-Tenant Logical Isolation:** Complete data separation across importer companies and logistics providers enforced at the query level across all server actions.
+- **Access Control & Cryptography:** Bcrypt hashing with secure salt rounds, HTTP-only authenticated session cookies, and Two-Factor Authentication (2FA).
+- **Data Protection & Sanitization:** Systematic masking of commercial client data before exporting RFQ payloads to external vendors.
+- **Audit Trails:** Immutable audit logging capturing administrative operations, plan modifications, and permission overrides.
 
 ---
 
-## 7. Aviso de Propriedade Intelectual e Contato
+## 7. Intellectual Property and Commercial Disclaimer
 
-Este repositorio tem o proposito exclusivo de **demonstracao arquitetural, tecnica e de competencias de engenharia de software e inteligencia artificial**.
+This repository serves strictly as an **architectural, technical, and engineering portfolio demonstration**.
 
-Por se tratar de um produto comercial proprietario (SaaS B2B ativo), o codigo-fonte completo, as chaves de infraestrutura de producao e os esquemas internos completos sao mantidos sob sigilo comercial e protegidos por direitos autorais.
+Because KotaFreight is an active proprietary commercial SaaS product, the full underlying source code, production infrastructure credentials, and internal production database schemas remain strictly confidential and protected by intellectual property laws.
 
-Para discussoes sobre a arquitetura do projeto, oportunidades profissionais ou demonstracao guiada do produto:
-- **Autor / Engenheiro:** Mateus Oliveira
-- **Ambito do Projeto:** Arquitetura de Software Full-Stack, Engenharia de IA e Solucoes B2B para Comercio Exterior
+For architectural inquiries, product demonstrations, or technical collaboration:
+- **Author / Lead Engineer:** Mateus Oliveira
+- **Platform Website:** [kotafreight.com](https://kotafreight.com/)
+- **LinkedIn Profile:** [linkedin.com/company/kotafreight](https://www.linkedin.com/company/kotafreight/)
+- **Engineering Domain:** Full-Stack Software Architecture, Agentic AI Engineering, and Enterprise B2B Foreign Trade Systems
