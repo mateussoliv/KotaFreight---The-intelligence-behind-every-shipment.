@@ -11,11 +11,13 @@
 ---
 
 <p align="center">
-  <img src="assets/kotafreight-landing.png" alt="KotaFreight Platform Overview" width="100%" />
+  <img src="/kotafreight-landing.png" alt="KotaFreight Platform Overview" width="100%" />
 </p>
 
+<br>
+
 <p align="center">
-  <img src="assets/kotafreight-dashboard.png" alt="KotaFreight Operations and Analytics Dashboard" width="100%" />
+  <img src="/kotafreight-dashboard.png" alt="KotaFreight Operations and Analytics Dashboard" width="100%" />
 </p>
 
 ---
